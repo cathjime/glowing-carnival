@@ -1,4 +1,5 @@
 import React from "react";
+//import card from material UI Library
 
 const Card = (props) => {
   const { title, img, description, rating, price } = props;
