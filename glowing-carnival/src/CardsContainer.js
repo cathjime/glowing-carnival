@@ -11,12 +11,13 @@ const CardsContainer = () => {
       description={dataItem.description}
       rating={dataItem.rating}
       price={dataItem.price}
+      //add onClick for nav to other screens
     />
   ));
 
   return (
     <>
-      <h4>This will spit out all the cards</h4>, {dataMap}
+      <h3>Search Results</h3>, {dataMap}
     </>
   );
 };

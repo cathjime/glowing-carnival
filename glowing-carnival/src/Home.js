@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header";
 import CardsContainer from "./CardsContainer";
+import Search from "./Search";
 
 const Home = () => {
   return (
