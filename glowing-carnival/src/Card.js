@@ -3,7 +3,7 @@ import React from "react";
 
 const Card = (props) => {
   const { title, img, description, rating, price } = props;
-  console.log("Props: ", props);
+
   return (
     <div>
       <h4>{title}</h4>;

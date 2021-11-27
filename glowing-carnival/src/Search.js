@@ -1,21 +1,27 @@
 import { React, useState } from "react";
+import Card from "./Card";
+import data from "./data";
 
-const Search = () => {
+const Search = (props) => {
+  const { searchHandler, submitHandler } = props;
   const [userInput, setUserInput] = useState("");
+  //   const [listingsData, setListingsData] = useState(data);
+
   const handleChange = (e) => {
     setUserInput(e.target.value);
+    searchHandler(userInput);
   };
+
   return (
     <>
-      <h3>
-        This will hold both a search bar and a button. Search will need to
-        filter based on input
-      </h3>
       <form>
-        <label>
-          Search by Location{" "}
-          <input type="text" value={userInput} onChange={handleChange} />
-        </label>
+        <input
+          placeholder="Search here..."
+          type="search"
+          value={userInput}
+          onChange={handleChange}
+        />
+        <input type="Submit" value="Search" onSubmit={submitHandler} />
       </form>
       <p>TEST: {userInput}</p>
     </>
