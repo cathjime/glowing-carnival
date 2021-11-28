@@ -1,31 +1,27 @@
 import { React, useState } from "react";
-import Card from "./Card";
-import data from "./data";
+import { Button } from "@material-ui/core";
+import SearchBar from "material-ui-search-bar";
+// import Card from "./Card";
+// import data from "./data";
 
 const Search = (props) => {
   const { searchHandler, submitHandler } = props;
   const [userInput, setUserInput] = useState("");
-  //   const [listingsData, setListingsData] = useState(data);
-
-  const handleChange = (e) => {
-    setUserInput(e.target.value);
-    searchHandler(userInput);
-  };
 
   return (
     <>
-      <form>
-        <input
-          placeholder="Search here..."
-          type="search"
-          value={userInput}
-          onChange={handleChange}
-        />
-        <input type="Submit" value="Search" onSubmit={submitHandler} />
-      </form>
+      <SearchBar
+        value={userInput}
+        onChange={(userInput) => setUserInput(userInput)}
+        onRequestSearch={console.log("I hope this works!")}
+        // onRequestSearch={() => doSomethingWith(this.state.value)}
+      />
+
       <p>TEST: {userInput}</p>
     </>
   );
 };
 
 export default Search;
+
+//  Notes for filter search: think about how to implement the filter when the form button is clicked

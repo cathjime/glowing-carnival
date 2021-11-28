@@ -36,15 +36,9 @@ const CardsContainer = () => {
     //look up how to get full input - why does it chop off last letter?
   };
 
-  const submitHandler = () => {
-    // setUserInput(e.target.value);
-    console.log("idkidkidk");
-  };
-
   return (
     <>
-      {/* <Form submitHandler={submitHandler} /> */}
-      <Search searchHandler={searchHandler} submitHandler={submitHandler} />
+      <Search searchHandler={searchHandler} />
       {/* boolean to check if search? if yes then render all if no then render filtered results */}
       <h3>Search Results</h3>, {dataMap}
     </>
@@ -56,4 +50,4 @@ export default CardsContainer;
 //  Notes
 //  how to deconstruct dataObj within the map function
 //  thinking about component setup when setting up the filtering for the data
-//  where should the search component be rendered? Home?
+//  remember to delete Form component
