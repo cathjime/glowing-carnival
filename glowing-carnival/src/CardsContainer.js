@@ -20,21 +20,38 @@ const CardsContainer = () => {
     />
   ));
 
-  //   const filteredList = listingsData.filter((listing) => {
-  //     const listingTitle = listing.title.toLowerCase();
-  //     const listingDesc = listing.description.toLowerCase();
-  //     listingTitle || listingDesc.includes("h");
-  //     .includes(searchTerm);
-  //     ||
-  //       listing.description.toLowerCase().includes(userInput.toLowerCase());
-  //   });
-  //   console.log("userinput: ", userInput);
+  //         return listing.title.toLowerCase().includes(userInput)
+  //         const listingDesc = listing.description.toLowerCase();
+
+  //     // listingsData.filter((listing) => {
+  //     //   //   console.log("title :", listingTitle, "desc: ", listingDesc);
+  //     //   // listingTitle ||
+  //     //   return listingTitle.includes(userInput);
+  //     //   //   .includes(userInput.toLowerCase());
+  //     //   //   ||
+  //     //   // listing.description.toLowerCase().includes(userInput.toLowerCase());
+  //     // });
+
+  const filteringlogic = (userInput) => {
+    return 
+  }
+  //this function should filter based on userInput
 
   const searchHandler = (formInput) => {
-    setSearchTerm(formInput.toLowerCase());
-    console.log("formInput:", formInput);
-    //look up how to get full input - why does it chop off last letter?
+    setSearchTerm(formInput);
+    
+
+    console.log("formInput:", formInput.toLowerCase());
+    // call function that takes new input and filters existing list
+    const filteredList = listingsData.filter((listing) => {
+      return listing.description.toLowerCase().includes(searchTerm);
+    });
+
+    console.log("did it filter?: ", filteredList);
+    // setListingsData(filteredList);
   };
+  //   console.log("listingsOG: ", listingsData);
+
 
   return (
     <>

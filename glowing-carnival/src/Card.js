@@ -6,7 +6,7 @@ const Card = (props) => {
 
   return (
     <div>
-      <h4>{title}</h4>;
+      <h3>{title}</h3>;
       <img
         // onClick={this.beyImageClickHandler}
         alt=""
