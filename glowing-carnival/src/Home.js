@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import SearchBar from "material-ui-search-bar";
+import SearchIcon from "@material-ui/icons/Search";
 import {
   Card,
   CardMedia,
@@ -7,6 +8,7 @@ import {
   CardContent,
   Typography,
   Grid,
+  InputBase,
 } from "@material-ui/core";
 import "./Home.css";
 // import * as Mui from '@material-ui/core';
@@ -17,9 +19,9 @@ import data from "./data";
 
 const Home = () => {
   // const { searchHandler } = props;
+
   // const [userInput, setUserInput] = useState("");
-  //   from CardsContainer
-  // const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [listingsData, setListingsData] = useState(data);
 
   const handleSearch = () => {
@@ -48,34 +50,31 @@ const Home = () => {
         </Typography>
       </CardContent>
     </Card>
-    // <Card
-    //   key={dataItem.id}
-    //   title={dataItem.title}
-    //   img={dataItem.img}
-    //   description={dataItem.description}
-    //   rating={dataItem.rating}
-    //   price={dataItem.price}
-    //   //add onClick for nav to other screens
-    // />
   ));
 
-  // const Card = (props) => {
-  //   const { title, img, description, rating, price } = props;
+  //   <SearchBar
+  //   value={searched}
+  //   onChange={(searchVal) => requestSearch(searchVal)}
+  //   onCancelSearch={() => cancelSearch()}
+  //   placeholder="filter"
+  // />
 
-  //   return (
-  //     <div>
-  //       <h3>{title}</h3>;
-  //       <img
-  //         // onClick={this.beyImageClickHandler}
-  //         alt=""
-  //         src={img}
-  //       />
-  //       <h4>{description}</h4>
-  //       <h4>{rating} stars</h4>
-  //       <h4> ${price} / night</h4>
-  //     </div>
-  //   );
+  // const [items, setItems] = useState(originalItems);
+  // const [searched, setSearched] = useState("");
+
+  // const requestSearch = (searchedVal) => {
+  //   const filteredItems = originalItems.filter((item) => {
+  //     return item.toLowerCase().includes(searchedVal.toLowerCase());
+  //   });
+  //   setItems(filteredItems);
   // };
+
+  const requestSearch = (searchTerm) => {
+    const filteredItems = data.filter((dataItem) => {
+      return dataItem.location.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    setListingsData(filteredItems);
+  };
 
   // onClick, the searchbar should render cards filtered by search term
   //         return listing.title.toLowerCase().includes(userInput)
@@ -94,21 +93,19 @@ const Home = () => {
   //   return;
   // };
   //this function should filter based on userInput
-  const str = "str";
 
   return (
     <>
       <h1>HOME</h1>,<h2>This is the header component</h2>,
       <h2>Here's a banner now</h2>
-      {/* <CardsContainer /> */}
       <SearchBar
-        value={"hoola"}
-        onChange={handleSearch}
-        onRequestSearch={handleSearch}
+        onChange={(newValue) => setSearchTerm(newValue)}
+        onRequestSearch={() => requestSearch(searchTerm)}
         // onRequestSearch={() => doSomethingWith(this.state.value)}
+        placeholder="Search for a location"
       />
+      <p>TEST: {searchTerm}</p>
       {dataMap}
-      {/* <p>TEST: {userInput}</p> */}
     </>
   );
 };
@@ -116,6 +113,6 @@ const Home = () => {
 export default Home;
 
 //  Notes
+//  you don't need a value within a material-ui searchbar
 //  how to deconstruct dataObj within the map function
 //  thinking about component setup when setting up the filtering for the data
-//  remember to delete Form component
