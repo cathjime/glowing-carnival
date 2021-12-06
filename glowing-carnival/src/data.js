@@ -3,9 +3,11 @@ let data = [
     id: 1,
     title: "A Hygge Home!",
     img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.explicit.bing.net%2Fth%3Fid%3DOIP.YpKaoxx2Dd2K1zmHS_l7XQHaEc%26pid%3DApi&f=1",
-    description: "A cozy house for a warm winter stay!",
+    description:
+      "This impressive home is a perfect place for a weekend getaway! Take in the scenery by hiking one of the many nearby trails, if you like.",
     rating: 4,
     price: 111,
+    location: "Stowe, VT",
   },
   {
     id: 2,
@@ -14,6 +16,7 @@ let data = [
     description: "A cozy cabin for a warm winter stay!",
     rating: 5,
     price: 58,
+    location: "Stowe, VT",
   },
   {
     id: 3,
@@ -22,6 +25,7 @@ let data = [
     description: "A cozy apartment for a warm winter stay!",
     rating: 3,
     price: 79,
+    location: "Stowe, VT",
   },
   {
     id: 4,
@@ -30,6 +34,7 @@ let data = [
     description: "A cozy cabin for a warm winter stay!",
     rating: 4,
     price: 185,
+    location: "Stowe, VT",
   },
   {
     id: 5,
@@ -38,6 +43,7 @@ let data = [
     description: "A cozy apartment for a warm winter stay!",
     rating: 5,
     price: 350,
+    location: "Fall River, MA",
   },
   {
     id: 6,
@@ -46,6 +52,7 @@ let data = [
     description: "A cozy house for a warm winter stay!",
     rating: 4,
     price: 325,
+    location: "Fall River, MA",
   },
   {
     id: 7,
@@ -54,6 +61,7 @@ let data = [
     description: "A cozy cabin for a warm winter stay!",
     rating: 3,
     price: 100,
+    location: "Manchester-by-the-Sea, MA",
   },
   {
     id: 8,
@@ -62,6 +70,7 @@ let data = [
     description: "A cozy apartment for a warm winter stay!",
     rating: 4,
     price: 88,
+    location: "Manchester-by-the-Sea, MA",
   },
   {
     id: 9,
@@ -70,6 +79,7 @@ let data = [
     description: "A cozy house for a warm winter stay!",
     rating: 5,
     price: 123,
+    location: "Burlington, VT",
   },
   {
     id: 10,
@@ -78,6 +88,7 @@ let data = [
     description: "A cozy cabin for a warm winter stay!",
     rating: 5,
     price: 225,
+    location: "Burlington, VT",
   },
 ];
 export default data;

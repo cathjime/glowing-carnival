@@ -1,0 +1,15 @@
+.card {
+  max-width: 600px;
+  max-height: 800px;
+  margin: 50px;
+  text-align: initial;
+}
+.card:hover {
+    transform: scale(1.07);
+  }
+/* .card-header {
+} */
+.card-media {
+  height: 0;
+  padding-top: 56.25%;
+}
