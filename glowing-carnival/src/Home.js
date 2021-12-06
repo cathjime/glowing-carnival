@@ -1,40 +1,30 @@
 import { React, useState } from "react";
 import SearchBar from "material-ui-search-bar";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchIcon from "@material-ui/icons/Search"; //  add into searchBar later
 import {
   Card,
   CardMedia,
   CardHeader,
   CardContent,
   Typography,
-  Grid,
-  InputBase,
+  Select,
+  MenuItem,
+  Grid, //  useful for cards display?
 } from "@material-ui/core";
 import "./Home.css";
-// import * as Mui from '@material-ui/core';
-
 import data from "./data";
 //  install esLint
 //  make sure to order imports correctly
 
 const Home = () => {
-  // const { searchHandler } = props;
-
-  // const [userInput, setUserInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [listingsData, setListingsData] = useState(data);
-
-  const handleSearch = () => {
-    console.log("this is a code refactor!");
-  };
-
-  //   dataMap is supposed to render the info from each dataObj inside its own card
 
   const dataMap = listingsData.map((dataItem) => (
     <Card variant="outlined" className="card">
       <CardHeader
-        title={dataItem.title} // data.title
-        subheader={dataItem.location} //data.location
+        title={dataItem.title}
+        subheader={dataItem.location}
         className="card-header"
       />
       <CardMedia className="card-media" image={dataItem.img} />
@@ -43,31 +33,26 @@ const Home = () => {
           {dataItem.description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Rating: {dataItem.rating} stars {/* data.rating */}
+          Rating: {dataItem.rating} stars
+          {/* will need to be rendered as a dropdown within the Card */}
         </Typography>
+        <Select>
+          <MenuItem value={1}>⭐️</MenuItem>
+          <MenuItem value={2}>⭐️⭐️</MenuItem>
+          <MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
+          <MenuItem placeholder="Rating ⭐️" value={4}>
+            ⭐️⭐️⭐️⭐️
+          </MenuItem>
+          <MenuItem placeholder="Rating ⭐️" value={5}>
+            ⭐️⭐️⭐️⭐️⭐️
+          </MenuItem>
+        </Select>
         <Typography variant="body2" color="text.secondary">
-          Price: ${dataItem.price}/night{/* data.price*/}
+          Price: ${dataItem.price}/night
         </Typography>
       </CardContent>
     </Card>
   ));
-
-  //   <SearchBar
-  //   value={searched}
-  //   onChange={(searchVal) => requestSearch(searchVal)}
-  //   onCancelSearch={() => cancelSearch()}
-  //   placeholder="filter"
-  // />
-
-  // const [items, setItems] = useState(originalItems);
-  // const [searched, setSearched] = useState("");
-
-  // const requestSearch = (searchedVal) => {
-  //   const filteredItems = originalItems.filter((item) => {
-  //     return item.toLowerCase().includes(searchedVal.toLowerCase());
-  //   });
-  //   setItems(filteredItems);
-  // };
 
   const requestSearch = (searchTerm) => {
     const filteredItems = data.filter((dataItem) => {
@@ -76,24 +61,6 @@ const Home = () => {
     setListingsData(filteredItems);
   };
 
-  // onClick, the searchbar should render cards filtered by search term
-  //         return listing.title.toLowerCase().includes(userInput)
-  //         const listingDesc = listing.description.toLowerCase();
-
-  //   listingsData.filter((listing) => {
-  //     //   console.log("title :", listingTitle, "desc: ", listingDesc);
-  //     // listingTitle ||
-  //     return listingTitle.includes(userInput);
-  //     //   .includes(userInput.toLowerCase());
-  //     //   ||
-  //     // listing.description.toLowerCase().includes(userInput.toLowerCase());
-  //   });
-
-  // const filteringlogic = (userInput) => {
-  //   return;
-  // };
-  //this function should filter based on userInput
-
   return (
     <>
       <h1>HOME</h1>,<h2>This is the header component</h2>,
@@ -101,7 +68,6 @@ const Home = () => {
       <SearchBar
         onChange={(newValue) => setSearchTerm(newValue)}
         onRequestSearch={() => requestSearch(searchTerm)}
-        // onRequestSearch={() => doSomethingWith(this.state.value)}
         placeholder="Search for a location"
       />
       <p>TEST: {searchTerm}</p>
@@ -114,5 +80,6 @@ export default Home;
 
 //  Notes
 //  you don't need a value within a material-ui searchbar
+//  material-ui card img won't show unless there's a height defined
 //  how to deconstruct dataObj within the map function
 //  thinking about component setup when setting up the filtering for the data
