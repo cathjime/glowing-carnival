@@ -9,7 +9,10 @@ import {
   Typography,
   Select,
   MenuItem,
-  Grid, //  useful for cards display?
+  FormControl,
+  InputLabel,
+  Grid,
+  Input, //  useful for cards display?
 } from "@material-ui/core";
 import "./Home.css";
 import data from "./data";
@@ -19,7 +22,11 @@ import data from "./data";
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [listingsData, setListingsData] = useState(data);
+  const [starRating, setStarRating] = useState("");
 
+  const changeHandler = (e) => {
+    setStarRating(e.target.value);
+  };
   const dataMap = listingsData.map((dataItem) => (
     <Card variant="outlined" className="card">
       <CardHeader
@@ -34,19 +41,21 @@ const Home = () => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Rating: {dataItem.rating} stars
-          {/* will need to be rendered as a dropdown within the Card */}
         </Typography>
-        <Select>
-          <MenuItem value={1}>⭐️</MenuItem>
-          <MenuItem value={2}>⭐️⭐️</MenuItem>
-          <MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
-          <MenuItem placeholder="Rating ⭐️" value={4}>
-            ⭐️⭐️⭐️⭐️
-          </MenuItem>
-          <MenuItem placeholder="Rating ⭐️" value={5}>
-            ⭐️⭐️⭐️⭐️⭐️
-          </MenuItem>
-        </Select>
+        <FormControl>
+          {/* <InputLabel>Rating</InputLabel> */}
+          <Select onChange={() => changeHandler}>
+            <MenuItem value={1}>⭐️</MenuItem>
+            <MenuItem value={2}>⭐️⭐️</MenuItem>
+            <MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
+            <MenuItem placeholder="Rating ⭐️" value={4}>
+              ⭐️⭐️⭐️⭐️
+            </MenuItem>
+            <MenuItem placeholder="Rating ⭐️" value={5}>
+              ⭐️⭐️⭐️⭐️⭐️
+            </MenuItem>
+          </Select>
+        </FormControl>
         <Typography variant="body2" color="text.secondary">
           Price: ${dataItem.price}/night
         </Typography>
@@ -70,7 +79,7 @@ const Home = () => {
         onRequestSearch={() => requestSearch(searchTerm)}
         placeholder="Search for a location"
       />
-      <p>TEST: {searchTerm}</p>
+      <p>TEST SELECTED: {starRating}</p>
       {dataMap}
     </>
   );
