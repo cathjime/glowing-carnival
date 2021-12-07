@@ -11,8 +11,8 @@ import {
   MenuItem,
   FormControl,
   InputLabel,
-  Grid,
-  Input, //  useful for cards display?
+  // Grid,
+  // Input, //  useful for cards display?
 } from "@material-ui/core";
 import "./Home.css";
 import data from "./data";
@@ -24,9 +24,23 @@ const Home = () => {
   const [listingsData, setListingsData] = useState(data);
   const [starRating, setStarRating] = useState("");
 
-  const changeHandler = (e) => {
+  const changeHandler = (e, cardId) => {
     setStarRating(e.target.value);
+    updateStarRating(cardId, listingsData);
+    //calls another function that changes the data based on id
+    //changeHandler also accepts an id which can be passed in on line  51
+    //use that id  to call other func inside changeHandler?
   };
+
+  const updateStarRating = (cardId, data) => {
+    data.map((dataItem) => {
+      if (dataItem.id === cardId) {
+        data.rating = starRating;
+      }
+    });
+    //  this function will update the existing data array and render the updated ratiing for the selected card
+  };
+
   const dataMap = listingsData.map((dataItem) => (
     <Card variant="outlined" className="card">
       <CardHeader
@@ -44,16 +58,13 @@ const Home = () => {
         </Typography>
         <FormControl>
           {/* <InputLabel>Rating</InputLabel> */}
-          <Select onChange={() => changeHandler}>
+          <Select onChange={(e) => changeHandler(e, id)} id={dataItem.id}>
+            {/* when change occurs I want to grab the id for the corresponding card */}
             <MenuItem value={1}>⭐️</MenuItem>
             <MenuItem value={2}>⭐️⭐️</MenuItem>
             <MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
-            <MenuItem placeholder="Rating ⭐️" value={4}>
-              ⭐️⭐️⭐️⭐️
-            </MenuItem>
-            <MenuItem placeholder="Rating ⭐️" value={5}>
-              ⭐️⭐️⭐️⭐️⭐️
-            </MenuItem>
+            <MenuItem value={4}>⭐️⭐️⭐️⭐️</MenuItem>
+            <MenuItem value={5}>⭐️⭐️⭐️⭐️⭐️</MenuItem>
           </Select>
         </FormControl>
         <Typography variant="body2" color="text.secondary">
