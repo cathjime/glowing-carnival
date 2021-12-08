@@ -38,40 +38,39 @@ const Home = () => {
         data.rating = starRating;
       }
     });
-    //  this function will update the existing data array and render the updated ratiing for the selected card
+    //  this function will update the existing data array and render the updated rating for the selected card
   };
 
   const dataMap = listingsData.map((dataItem) => (
-    <Card variant="outlined" className="card">
-      <CardHeader
-        title={dataItem.title}
-        subheader={dataItem.location}
-        className="card-header"
-      />
-      <CardMedia className="card-media" image={dataItem.img} />
-      <CardContent>
-        <Typography variant="body1" color="text.primary">
-          {dataItem.description}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Rating: {dataItem.rating} stars
-        </Typography>
-        <FormControl>
-          {/* <InputLabel>Rating</InputLabel> */}
-          <Select onChange={(e) => changeHandler(e, id)} id={dataItem.id}>
-            {/* when change occurs I want to grab the id for the corresponding card */}
-            <MenuItem value={1}>⭐️</MenuItem>
-            <MenuItem value={2}>⭐️⭐️</MenuItem>
-            <MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
-            <MenuItem value={4}>⭐️⭐️⭐️⭐️</MenuItem>
-            <MenuItem value={5}>⭐️⭐️⭐️⭐️⭐️</MenuItem>
-          </Select>
-        </FormControl>
-        <Typography variant="body2" color="text.secondary">
-          Price: ${dataItem.price}/night
-        </Typography>
-      </CardContent>
-    </Card>
+    <div className="searchresult">
+      <img src={dataItem.img} alt="" />
+
+      <div className="searchresult_info">
+        <div className="infoTop">
+          <p>{dataItem.location}</p>
+          <h3>{dataItem.title}</h3>
+          <p>_______</p>
+          <p>{dataItem.description}</p>
+        </div>
+        <div className="infoBottom">
+          <div className="stars">
+            <p>Rating: {dataItem.rating}</p>
+            <FormControl>
+              <Select onChange={(e) => changeHandler(e)}>
+                <MenuItem value={1}>⭐️</MenuItem>
+                <MenuItem value={2}>⭐️⭐️</MenuItem>
+                <MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
+                <MenuItem value={4}>⭐️⭐️⭐️⭐️</MenuItem>
+                <MenuItem value={5}>⭐️⭐️⭐️⭐️⭐️</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <div className="price">
+            <h4>Price: ${dataItem.price}/night</h4>
+          </div>
+        </div>
+      </div>
+    </div>
   ));
 
   const requestSearch = (searchTerm) => {
@@ -100,6 +99,7 @@ export default Home;
 
 //  Notes
 //  you don't need a value within a material-ui searchbar
+//  material-ui select requires the e passed into the (e) => function(e), otherwise it won't work
 //  material-ui card img won't show unless there's a height defined
 //  how to deconstruct dataObj within the map function
 //  thinking about component setup when setting up the filtering for the data
