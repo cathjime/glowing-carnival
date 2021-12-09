@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import SearchBar from "material-ui-search-bar";
 import SearchIcon from "@material-ui/icons/Search"; //  add into searchBar later
 import {
@@ -24,52 +24,48 @@ const Home = () => {
   const [listingsData, setListingsData] = useState(data);
   const [starRating, setStarRating] = useState("");
 
-  const changeHandler = (e, cardId) => {
+  const changeHandler = (e, cardId, dataArray) => {
     setStarRating(e.target.value);
-    updateStarRating(cardId, listingsData);
+    updateStarRating(cardId, dataArray, starRating);
     //calls another function that changes the data based on id
     //changeHandler also accepts an id which can be passed in on line  51
     //use that id  to call other func inside changeHandler?
   };
 
-  const updateStarRating = (cardId, data) => {
-    data.map((dataItem) => {
-      if (dataItem.id === cardId) {
-        data.rating = starRating;
+  // useEffect(() => {
+  //   updateStarRating();
+  // }, [listingsData]);
+
+  const updateStarRating = (cardId, dataArray, rating) => {
+    dataArray.map((dataObject) => {
+      if (dataObject.id === cardId) {
+        dataObject.rating = rating;
       }
+      console.log(listingsData, "dataID: ", dataObject.id, "cardID: ", cardId);
     });
     //  this function will update the existing data array and render the updated rating for the selected card
   };
 
   const dataMap = listingsData.map((dataItem) => (
-    <div className="searchresult">
+    <div className="searchresult" id={`${dataItem.id}`}>
+      <h3>{dataItem.title}</h3>
+      <p>{dataItem.location}</p>
       <img src={dataItem.img} alt="" />
-
-      <div className="searchresult_info">
-        <div className="infoTop">
-          <p>{dataItem.location}</p>
-          <h3>{dataItem.title}</h3>
-          <p>_______</p>
-          <p>{dataItem.description}</p>
-        </div>
-        <div className="infoBottom">
-          <div className="stars">
-            <p>Rating: {dataItem.rating}</p>
-            <FormControl>
-              <Select onChange={(e) => changeHandler(e)}>
-                <MenuItem value={1}>⭐️</MenuItem>
-                <MenuItem value={2}>⭐️⭐️</MenuItem>
-                <MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
-                <MenuItem value={4}>⭐️⭐️⭐️⭐️</MenuItem>
-                <MenuItem value={5}>⭐️⭐️⭐️⭐️⭐️</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div className="price">
-            <h4>Price: ${dataItem.price}/night</h4>
-          </div>
-        </div>
-      </div>
+      <p>_______</p>
+      <p>{dataItem.description}</p>
+      <p>Rating: {dataItem.rating}</p>
+      {/* set dataItem.rating to empty str and 
+      when the value on the select changes then add it to the data and displayit */}
+      <FormControl>
+        <Select onChange={(e) => changeHandler(e, dataItem.id, listingsData)}>
+          <MenuItem value={1}>⭐️</MenuItem>
+          <MenuItem value={2}>⭐️⭐️</MenuItem>
+          <MenuItem value={3}>⭐️⭐️⭐️</MenuItem>
+          <MenuItem value={4}>⭐️⭐️⭐️⭐️</MenuItem>
+          <MenuItem value={5}>⭐️⭐️⭐️⭐️⭐️</MenuItem>
+        </Select>
+      </FormControl>
+      <h4>Price: ${dataItem.price}/night</h4>
     </div>
   ));
 
