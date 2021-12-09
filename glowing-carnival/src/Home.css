@@ -1,12 +1,12 @@
-.card {
+.searchresult {
   max-width: 600px;
   max-height: 800px;
-  margin: 50px;
+  margin: 85px;
   text-align: initial;
 }
-.card:hover {
-    transform: scale(1.07);
-  }
+.searchresult:hover {
+  transform: scale(1.07);
+}
 /* .card-header {
 } */
 .card-media {

@@ -1,19 +1,7 @@
 import { React, useState, useEffect } from "react";
 import SearchBar from "material-ui-search-bar";
 import SearchIcon from "@material-ui/icons/Search"; //  add into searchBar later
-import {
-  Card,
-  CardMedia,
-  CardHeader,
-  CardContent,
-  Typography,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  // Grid,
-  // Input, //  useful for cards display?
-} from "@material-ui/core";
+import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
 import "./Home.css";
 import data from "./data";
 //  install esLint
@@ -27,31 +15,26 @@ const Home = () => {
   const changeHandler = (e, cardId, dataArray) => {
     setStarRating(e.target.value);
     updateStarRating(cardId, dataArray, starRating);
-    //calls another function that changes the data based on id
-    //changeHandler also accepts an id which can be passed in on line  51
-    //use that id  to call other func inside changeHandler?
   };
 
-  // useEffect(() => {
-  //   updateStarRating();
-  // }, [listingsData]);
-
-  const updateStarRating = (cardId, dataArray, rating) => {
+  const updateStarRating = (cardId, dataArray, newRating) => {
     dataArray.map((dataObject) => {
       if (dataObject.id === cardId) {
-        dataObject.rating = rating;
+        dataObject.rating = newRating;
+        // setListingsData(dataArray);
       }
-      console.log(listingsData, "dataID: ", dataObject.id, "cardID: ", cardId);
+      console.log("updatedList ", listingsData);
     });
-    //  this function will update the existing data array and render the updated rating for the selected card
   };
+  //  once the data has been updated in the corresponding object,
+  //  map through updated listings and render
 
   const dataMap = listingsData.map((dataItem) => (
     <div className="searchresult" id={`${dataItem.id}`}>
       <h3>{dataItem.title}</h3>
       <p>{dataItem.location}</p>
       <img src={dataItem.img} alt="" />
-      <p>_______</p>
+      <p>_________________________</p>
       <p>{dataItem.description}</p>
       <p>Rating: {dataItem.rating}</p>
       {/* set dataItem.rating to empty str and 
