@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import SearchBar from "material-ui-search-bar";
 import SearchIcon from "@material-ui/icons/Search"; //  add into searchBar later
-import { Select, MenuItem, FormControl, InputLabel } from "@material-ui/core";
+import { Select, MenuItem, FormControl, Button } from "@material-ui/core";
 import "./Home.css";
 import data from "./data";
 import { ContactSupportOutlined } from "@material-ui/icons";
@@ -12,6 +12,7 @@ const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [listingsData, setListingsData] = useState(data);
   const [starRating, setStarRating] = useState("");
+  const [listingPrice, setListingPrice] = useState(1);
 
   const changeHandler = (e, cardId, dataArray) => {
     const val = e.target.value;
@@ -45,7 +46,7 @@ const Home = () => {
           <MenuItem value={5}>⭐️⭐️⭐️⭐️⭐️</MenuItem>
         </Select>
       </FormControl>
-      <h4>Price: ${dataItem.price}/night</h4>
+      <h4>Price: ${dataItem.price} / Night</h4>
     </div>
   ));
 
@@ -57,11 +58,27 @@ const Home = () => {
   };
 
   const filterByRating = (ratingVal) => {
-    console.log(ratingVal);
     const filteredRatings = listingsData.filter((dataItem) => {
       return dataItem.rating >= ratingVal;
     });
     setListingsData(filteredRatings);
+  };
+
+  const onValueChange = (newVal) => {
+    setListingPrice(newVal);
+  };
+
+  // const filterByPrice = (priceVal) => {
+  //   const filteredByPrice = listingsData.filter((dataItem) => {
+  //     return dataItem.price <= priceVal;
+  //   });
+  //   setListingsData(filteredByPrice);
+  // };
+  const filterByPrice = () => {
+    const filteredByPrice = listingsData.filter((dataItem) => {
+      return dataItem.price <= listingPrice;
+    });
+    setListingsData(filteredByPrice);
   };
 
   console.log("data: ", listingsData);
@@ -75,10 +92,7 @@ const Home = () => {
         placeholder="Search for a location"
       />
       <div className="ratingsFilter">
-        {/* should also have an onClick to return stars with x rating
-  drop down with radio button when button is selected then saec button on bottom is clicked render new data
-  */}
-        <h5>Search by Star Rating:</h5>
+        <h4>Search by Star Rating:</h4>
         <form>
           <input
             type="radio"
@@ -121,10 +135,25 @@ const Home = () => {
           />
           <label for="5 stars">5 Stars and Up</label>
         </form>
-
-        <p>Your selection is {starRating}</p>
       </div>
-      <p>TEST SELECTED: {starRating}</p>
+      <div className="priceFilter">
+        <h4>Search by Price: ${listingPrice} / Night</h4>
+
+        <div class="slidecontainer">
+          <input
+            type="range"
+            min="1"
+            max="500"
+            value={listingPrice}
+            class="slider"
+            id="myRange"
+            onChange={(e) => onValueChange(e.target.value)}
+          />
+          <div onClick={() => filterByPrice()} className="priceFilterButton">
+            Save
+          </div>{" "}
+        </div>
+      </div>
       {dataMap}
     </>
   );
@@ -136,6 +165,6 @@ export default Home;
 //  you don't need a value within a material-ui searchbar
 //  material-ui select requires the e passed into the (e) => function(e), otherwise it won't work
 //  material-ui card img won't show unless there's a height defined
-//  how to deconstruct dataObj within the map function (you can't)
+//  how to deconstruct dataObj inside the map function (you can't)
 //  thinking about component setup when setting up the filtering for the data
 //  making the data persist - currently it doesn't persist after refresh

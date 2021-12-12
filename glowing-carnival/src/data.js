@@ -15,7 +15,7 @@ let data = [
     img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Xt8wOi_eB1KqPgHPZuYUAAHaE0%26pid%3DApi&f=1",
     description: "A cozy cabin for a warm winter stay!",
     rating: 0,
-    price: 58,
+    price: 408,
     location: "Stowe, VT",
   },
   {
@@ -51,7 +51,7 @@ let data = [
     img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.2Un-nkS4FVE7CDACGY1-rgHaEc%26pid%3DApi&f=1",
     description: "A cozy house for a warm winter stay!",
     rating: 0,
-    price: 325,
+    price: 225,
     location: "Fall River, MA",
   },
   {
@@ -60,7 +60,7 @@ let data = [
     img: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.2Un-nkS4FVE7CDACGY1-rgHaEc%26pid%3DApi&f=1",
     description: "A cozy cabin for a warm winter stay!",
     rating: 0,
-    price: 100,
+    price: 350,
     location: "Manchester-by-the-Sea, MA",
   },
   {
