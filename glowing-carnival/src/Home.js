@@ -13,21 +13,18 @@ const Home = () => {
   const [starRating, setStarRating] = useState("");
 
   const changeHandler = (e, cardId, dataArray) => {
-    setStarRating(e.target.value);
-    updateStarRating(cardId, dataArray, starRating);
+    const val = e.target.value;
+    setStarRating(val);
+    updateStarRating(cardId, dataArray, val);
   };
 
-  const updateStarRating = (cardId, dataArray, newRating) => {
+  const updateStarRating = (cardId, dataArray, ratingValue) => {
     dataArray.map((dataObject) => {
       if (dataObject.id === cardId) {
-        dataObject.rating = newRating;
-        // setListingsData(dataArray);
+        dataObject.rating = ratingValue;
       }
-      console.log("updatedList ", listingsData);
     });
   };
-  //  once the data has been updated in the corresponding object,
-  //  map through updated listings and render
 
   const dataMap = listingsData.map((dataItem) => (
     <div className="searchresult" id={`${dataItem.id}`}>
@@ -37,8 +34,7 @@ const Home = () => {
       <p>_________________________</p>
       <p>{dataItem.description}</p>
       <p>Rating: {dataItem.rating}</p>
-      {/* set dataItem.rating to empty str and 
-      when the value on the select changes then add it to the data and displayit */}
+
       <FormControl>
         <Select onChange={(e) => changeHandler(e, dataItem.id, listingsData)}>
           <MenuItem value={1}>⭐️</MenuItem>
@@ -68,6 +64,17 @@ const Home = () => {
         onRequestSearch={() => requestSearch(searchTerm)}
         placeholder="Search for a location"
       />
+      <div className="ratingFilter">
+        {/* should also have an onClick to return stars with x rating
+        1 star and up / 1 star only
+        2 stars and up / 2 stars only
+        3 stars and up / 3 stars only
+        4 stars and up  / 4 stars only
+        5 stars and up / 5 stars only
+        drop down with radio button when button is selected then saec button on bottom is clicked render new data
+        */}
+        <h5>Search by Star Rating</h5>
+      </div>
       <p>TEST SELECTED: {starRating}</p>
       {dataMap}
     </>
