@@ -13,3 +13,10 @@
   height: 0;
   padding-top: 56.25%;
 }
+.ratingsFilter {
+  max-width: 900px;
+  max-height: 300px;
+  margin: 25px;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
