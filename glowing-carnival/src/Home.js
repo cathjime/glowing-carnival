@@ -8,6 +8,8 @@ import { ContactSupportOutlined } from "@material-ui/icons";
 //  install esLint
 //  make sure to order imports correctly
 
+//  Home
+// Banner renders Search
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [listingsData, setListingsData] = useState(data);
@@ -28,6 +30,7 @@ const Home = () => {
     });
   };
 
+  //  ListingsContainer renders Listing
   const dataMap = listingsData.map((dataItem) => (
     <div className="searchresult" id={`${dataItem.id}`}>
       <h3>{dataItem.title}</h3>
@@ -37,6 +40,7 @@ const Home = () => {
       <p>{dataItem.description}</p>
       <p>Rating: {dataItem.rating}</p>
 
+      {/* Search renders SearchResults */}
       <FormControl>
         <Select onChange={(e) => changeHandler(e, dataItem.id, listingsData)}>
           <MenuItem value={1}>⭐️</MenuItem>
@@ -68,12 +72,6 @@ const Home = () => {
     setListingPrice(newVal);
   };
 
-  // const filterByPrice = (priceVal) => {
-  //   const filteredByPrice = listingsData.filter((dataItem) => {
-  //     return dataItem.price <= priceVal;
-  //   });
-  //   setListingsData(filteredByPrice);
-  // };
   const filterByPrice = () => {
     const filteredByPrice = listingsData.filter((dataItem) => {
       return dataItem.price <= listingPrice;
@@ -81,7 +79,6 @@ const Home = () => {
     setListingsData(filteredByPrice);
   };
 
-  console.log("data: ", listingsData);
   return (
     <>
       <h1>HOME</h1>,<h2>This is the header component</h2>,
@@ -162,9 +159,9 @@ const Home = () => {
 export default Home;
 
 //  Notes
+//  making the data persist - currently it doesn't persist after refresh
 //  you don't need a value within a material-ui searchbar
 //  material-ui select requires the e passed into the (e) => function(e), otherwise it won't work
 //  material-ui card img won't show unless there's a height defined
 //  how to deconstruct dataObj inside the map function (you can't)
 //  thinking about component setup when setting up the filtering for the data
-//  making the data persist - currently it doesn't persist after refresh
